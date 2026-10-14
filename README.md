@@ -4,7 +4,11 @@
 
 ## 发布边界与退役说明
 
-原公共托管服务 `proxy.wolfeovo.top` 进入退役流程；本仓库只用于自行部署，不承诺任何原域名的可用性。准备源码不等于完成线上停机。上游说明见 `README.upstream.md`（历史文档，描述的安全性、模型版本及外部服务可用性未经本快照验证；其中部分历史相对链接未随本白名单快照发布）。
+原公共托管服务 `proxy.wolfeovo.top` 已退役，DNS、站点与线上容器入口均已移除；本仓库继续用于自行部署，不提供原域名服务。上游说明见 `README.upstream.md`（历史文档，描述的安全性、模型版本及外部服务可用性未经本快照验证；其中部分历史相对链接未随本白名单快照发布）。
+
+### 验证范围
+
+独立发布副本已通过 JavaScript 语法与 Compose 配置检查；在 Node 22.23.3 和 Node 26.7.0 下实际代理自有本地 HTTP fixture，GET、HTML、POST 均返回 200，并验证 HTML 注入和链接改写。Node 22 测试容器使用无外部网络隔离。未重新构建 Dockerfile 镜像、未测试 Cloudflare worker 部署、第三方站点或登录兼容性。
 
 上游 2.x 提供混淆后的 JavaScript 产物。本快照保留 `bundle.mjs`、`build/worker.js`、`build/cf_page/_worker.js`，**不声称包含完整可读源码、反混淆源码或可重建这些产物的构建链**。Node bundle 和 Cloudflare worker 是不同运行平台的现存产物，本次没有重新构建或公开网络测试。
 
